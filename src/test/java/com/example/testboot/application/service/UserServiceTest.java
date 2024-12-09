@@ -1,6 +1,7 @@
 package com.example.testboot.application.service;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -38,8 +39,12 @@ class UserServiceTest {
 	}
 	
 	@Test
-	void createUser() {
+	void testCreateUser() {
+		User newUser = new User(null, "Marcus finix", "finix_cgo@mail.com");
 		
+		userService.createUser(newUser.getName(), newUser.getEmail());
+		
+		verify(userRepository, times(1)).save(any(User.class));
 	}
 
 }
